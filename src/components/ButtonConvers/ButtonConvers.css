@@ -1,0 +1,44 @@
+.buttons-convers{
+    margin:0px;
+    display:flex;
+    flex-direction: column-reverse;
+    justify-content:center;
+    gap:15px;
+}
+.buttons-convers > *{
+    width:35px;
+    height:35px;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+.buttons{
+    display: flex;
+    width:115px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.buttons>*{
+   font-weight: bold;
+    width:45px;
+    height:25px;
+    cursor:pointer;
+    background:rgba(255, 255, 255, 0.05);
+    color:aliceblue;
+    border-radius:5px;
+    /* background:; */
+
+}
+.buttons>button:hover{
+    background:rgba(255, 255, 255, 0.2);
+}
+
+.clear{
+    width:150px;
+    height:150px;
+    position:absolute;
+    top:15px;
+    right:10px;
+}
