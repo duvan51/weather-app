@@ -2,14 +2,11 @@ import {useEffect, useState} from 'react'
 import getAllClim from './services/getAllClim.js';
 import getAllPaisBan from './services/getAllPaisBan.js';
 
+
 import './App.css';
 
 //imports components
 import ButtonsConvers from './components/ButtonConvers/ButtonsConvers.js'
-
-
-
-
 
 function App() {
   
@@ -20,14 +17,17 @@ function App() {
   const [windSpeed, setDescriwindSpeed]= useState("")
   // const [temp, setTemp] = useState(" ")
   
-  
+//api recibe datos de icono flag of country 
+const [country, setCountry] = useState(" ")  
+const [countryP, setCountryP] = useState(" ") // pais 
+const [countryImage, setCountryImage] = useState(" ")
+
 
 
 //api recibe datos de clima
   useEffect(()=> {
     getAllClim().then((res)=> {
       setCity(res.data.name);
-      console.log(res.data.name);
       setIcon(res.data.weather[0].icon);
       setDescriClim(res.data.weather[0].description)
       setDescrihumity(res.data.main.humidity)
@@ -36,35 +36,33 @@ function App() {
       /**temperature */
       // setTemp(res.data.main.temp);      
       /**pais por codigo */
-      setCountry(res.data.sys.country);     
+      setCountry(res.data.sys.country);
+    
       
-    })
+    })  
+        
   },[])
 
-//api recibe datos de icono flag of country 
-  const [country, setCountry] = useState(" ")  
-  const [countryP, setCountryP] = useState(" ") // pais 
-  const [countryImage, setCountryImage] = useState(" ")
 
-
-  
   useEffect(()=> {
-    getAllPaisBan().then((res)=>{
+     //******aqui vienen las banderas  */
+     getAllPaisBan().then((res)=>{
       const pais = country.toLowerCase() //del country lo cambio a minusculas para mi api de paises y banderas
       const da = res.data
-
       setCountryImage(pais)
 
       for ( var key in da){
         const counttryValue = (key, key == pais);
         if(counttryValue == true ){
-          return(setCountryP(da[key])); // pendiente = arreglar no me carga con la pagina
+          return(setCountryP(da[key])) // pendiente = arreglar no me carga con la pagina
+          
         }
-      }      
+      }
     })
+  }, [country])
 
-  },[])
-  
+
+
 
   return (
     <div className="App">
@@ -98,9 +96,8 @@ function App() {
             <div className="descriptVientos">
               <div>💨 VIENTOS A </div><div>{windSpeed} m/s</div>
             </div>
-
-
           </div>
+      
          
 
           
