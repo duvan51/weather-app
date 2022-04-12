@@ -67,7 +67,7 @@ const [countryImage, setCountryImage] = useState(" ")
   return (
     <div className="App">
       <header className="App-header">
-        <h1>app clima</h1>
+        <h1></h1>
       </header>
       <section className="App-body">
         <main className="App-main"> 

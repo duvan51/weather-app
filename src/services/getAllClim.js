@@ -1,5 +1,7 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
+import './getAllClim.css';
 
 /************ recibir l geolocalizacion ********** */
 var lat 
@@ -9,20 +11,25 @@ var long
 function successCallback(res){
     lat = res.coords.latitude;
     long = res.coords.longitude;
-
-    alert(`tu longitud es = ${long}, y tu latitud es = ${lat},`)
 }
 
 function errorCallback(res){
-    alert("deebes permiir al navegador acceder a tu ubicacion")
+    
+    
+    
+    
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'deja que el navegador acceda a tu ubicacion!',
+        showConfirmButton:false,
+        footer: '<input type="button" class="btn-recargar" value="Recargar" onclick="location.reload()">',
+      })
+
+    
 } 
 
-var geoOps= {
-    enableHighAccuracy:true,
-    timeout:2000
-}
-
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback, geoOps);
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     
 
 /********Fin calcularMiUbicacion()*************************************/
